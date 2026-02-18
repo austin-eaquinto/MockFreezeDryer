@@ -1,0 +1,13 @@
+# Build directories
+build/
+cmake-build-*/
+sdkconfig
+sdkconfig.old
+
+# IDE settings
+.idea/
+.vscode/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
