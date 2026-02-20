@@ -11,16 +11,16 @@ class OLED {
     // constants for the screen size
     static constexpr  uint8_t WIDTH = 128;
     static constexpr  uint8_t HEIGHT = 64;
+    static constexpr uint8_t DEFAULT_ADDR = 0x3C;
 
     // state. the hex address, pointer to I2C bus, and device ID
     private:
-        uint8_t _address;
         i2c_master_bus_handle_t _bus_handle;
-        i2c_master_bus_handle_t _device_handle;
+        i2c_master_dev_handle_t _device_handle;
 
 public:
     // Constructor
-    OLED(uint8_t address, i2c_master_bus_handle_t bus_handle);
+    OLED(i2c_master_bus_handle_t bus_handle);
 
     // wakes up the screen and clears it
     /* this initializer uses the 'esp_err_t' to "wake up" the screen
