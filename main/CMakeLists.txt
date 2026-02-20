@@ -1,2 +1,2 @@
-idf_component_register(SRCS "MockFreezeDryer.c" "BME280.cpp" "OLED.cpp"
+idf_component_register(SRCS "MockFreezeDryer.c" "main.cpp" "BME280.cpp" "OLED.cpp"
                     INCLUDE_DIRS ".")

@@ -1,5 +1,5 @@
 //
-// Created by austi on 2/18/2026.
+// Created by austin on 2/18/2026.
 //
 
 #ifndef MOCKFREEZEDRYER_OLED_H
