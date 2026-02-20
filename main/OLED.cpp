@@ -25,7 +25,24 @@ OLED::OLED(i2c_master_bus_handle_t bus_handle) :
 /* returning ESP_OK is the 'it passed' flag for esp_err_t type */
 esp_err_t OLED::init() {
 
-    uint8_t cmd_buffer[] = { 0x00, 0xAF };
+    // control byte and Display ON commands
+    uint8_t init_seq[] = {
+        0x00,          // Control Byte: Following bytes are commands
+        0xAE,          // Display OFF (Sleep Mode)
+        0xD5, 0x80,    // Set Clock Divide Ratio
+        0xA8, 0x3F,    // Set Multiplex Ratio (64 lines)
+        0xD3, 0x00,    // Set Display Offset (0)
+        0x40,          // Set Start Line (0)
+        0x8D, 0x14,    // Enable Charge Pump (CRITICAL)
+        0xA1,          // Set Segment Re-map (Horizontal flip)
+        0xC8,          // Set COM Output Scan Direction (Vertical flip)
+        0xDA, 0x12,    // Set COM Pins Hardware Config
+        0x81, 0xCF,    // Set Contrast (0xCF is bright!)
+        0xA4,          // Entire Display ON (Resume from RAM)
+        0xA6,          // Set Normal Display (Not inverted)
+        0xAF           // Display ON!
+    };
 
-    return ESP_OK;
+    // keep the machine running even if the screen is missing
+    return i2c_master_transmit(_device_handle, init_seq, sizeof(init_seq), -1);
 }
