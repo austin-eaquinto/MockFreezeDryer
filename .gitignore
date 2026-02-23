@@ -11,3 +11,7 @@ sdkconfig.old
 # Python artifacts
 __pycache__/
 *.py[cod]
+
+# ESP-IDF specific ignores
+managed_components/
+dependencies.lock

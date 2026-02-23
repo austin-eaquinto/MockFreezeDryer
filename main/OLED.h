@@ -15,6 +15,7 @@ class OLED {
 
     // state. the hex address, pointer to I2C bus, and device ID
     private:
+        // stores the connection to the esp32's i2c hardware
         i2c_master_bus_handle_t _bus_handle;
         i2c_master_dev_handle_t _device_handle;
 
@@ -26,6 +27,8 @@ public:
     /* this initializer uses the 'esp_err_t' to "wake up" the screen
      * or return an error code if something is wrong */
     esp_err_t init();
+    void clear();
+    void drawTestPattern();
 
     // abstracted method to display data from BME280 sensor
     void showStatus(float temp, float pressure);
